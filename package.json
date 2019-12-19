@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
+    "@types/jest": "^24.0.24",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
@@ -20,6 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "coverage": "yarn test -- --coverage",
     "cypress:run": "cypress run --record --key=${CYPRESS_RECORD_KEY}",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:run"
   },
@@ -39,14 +40,21 @@
     ]
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.4",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
     "cypress": "^3.8.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
+    "jest-enzyme": "^7.1.2",
     "prettier": "^1.19.1",
-    "start-server-and-test": "^1.10.6"
+    "start-server-and-test": "^1.10.6",
+    "ts-jest": "^24.2.0"
   }
 }
