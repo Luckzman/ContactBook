@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="card"
+>
+  <img
+    alt="user"
+    className="img"
+    src="https://res.cloudinary.com/dx0nauane/image/upload/v1576065923/avatar.jpg"
+  />
+  <div
+    className="card-details"
+  >
+    <h4
+      className="name"
+    >
+      <span
+        className="word-break"
+      >
+        Mary Ann
+      </span>
+    </h4>
+    <p
+      className="details"
+    >
+      <span
+        className="word-break"
+      >
+        maryann@gmail.com
+      </span>
+    </p>
+    <p
+      className="details"
+    >
+      <span
+        className="word-break"
+      >
+        07034222671
+      </span>
+    </p>
+  </div>
+  <div
+    className="card-footer"
+  >
+    <div
+      className="footer"
+    >
+      <ForwardRef(SvgHeartRegular)
+        className="icon"
+      />
+      <p
+        className="icon-text undefined"
+      >
+        Like
+      </p>
+    </div>
+    <div
+      className="footer"
+    >
+      <ForwardRef(SvgShareSolid)
+        className="icon"
+      />
+      <p
+        className="icon-text share"
+      >
+        Share
+      </p>
+    </div>
+    <div
+      className="footer"
+    >
+      <ForwardRef(SvgUserEditSolid)
+        className="icon"
+      />
+      <p
+        className="icon-text edit"
+      >
+        Edit
+      </p>
+    </div>
+  </div>
+</div>
+`;

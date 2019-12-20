@@ -1,14 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<div>
+<div
+  className="home"
+>
   <Navbar
     handleNewContact={[Function]}
   />
   <div
     className="container"
   >
-    Main Area
+    <h2>
+      All Contacts
+    </h2>
+    <ContactCard />
   </div>
 </div>
 `;

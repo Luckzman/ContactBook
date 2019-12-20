@@ -15,7 +15,9 @@ exports[`renders without crashing 1`] = `
     <div
       className="links"
     >
-      <p>
+      <p
+        className="favorite-link"
+      >
         Favorite Contacts
       </p>
       <Button>

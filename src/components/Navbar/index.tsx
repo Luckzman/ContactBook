@@ -12,7 +12,7 @@ const Navbar: React.FC<Props> = ({ handleNewContact }) => {
       <div className="container">
         <h3 className="brand">ContactBook</h3>
         <div className="links">
-          <p>Favorite Contacts</p>
+          <p className="favorite-link">Favorite Contacts</p>
           <Button onClick={handleNewContact}>New Contact</Button>
         </div>
       </div>
