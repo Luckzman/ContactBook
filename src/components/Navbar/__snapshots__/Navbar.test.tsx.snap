@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="navbar"
+>
+  <div
+    className="container"
+  >
+    <h3
+      className="brand"
+    >
+      ContactBook
+    </h3>
+    <div
+      className="links"
+    >
+      <p>
+        Favorite Contacts
+      </p>
+      <Button>
+        New Contact
+      </Button>
+    </div>
+  </div>
+</div>
+`;

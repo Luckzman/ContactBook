@@ -1,0 +1,14 @@
+@import '../../styles/index.scss';
+
+.btn{
+  color: map-get($colors, white-color );
+  background-color: map-get($colors, brand-color);
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 1px map-get($colors, grey-color );
+  cursor: pointer;
+  &:hover{
+    box-shadow: none;
+  }
+}

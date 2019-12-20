@@ -1,0 +1,27 @@
+@import '../../styles/index.scss';
+
+.navbar{
+  width: 100%;
+  background-color: map-get($colors, navbar-bg);
+  display: flex;
+  justify-content: center;
+  .container{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    .brand{
+      color: map-get($colors, brand-color)
+    }
+    .links{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      p{
+        margin-right: 20px;
+        color: map-get($colors, faint-link);
+        cursor: pointer;
+      }
+    }
+  }
+}
