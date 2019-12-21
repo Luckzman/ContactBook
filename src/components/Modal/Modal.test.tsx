@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from './';
+import Modal from './';
 
 it('renders without crashing', () => {
   const props = {
-    onClick: jest.fn(),
+    children: <></>,
+    hideModal: jest.fn(),
   };
-  shallow(<Button {...props}>Submit</Button>);
+  shallow(<Modal {...props} />);
 });

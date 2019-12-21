@@ -1,8 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Home from './';
 
-it('renders without crashing', () => {
-  const wrapper = shallow(<Home />);
-  expect(wrapper).toMatchSnapshot();
+describe('Home', () => {
+  it('renders without crashing', () => {
+    shallow(<Home />);
+  });
+  it('opens modal when toggle modal button is clicked', () => {
+    const wrapper = mount(<Home />);
+    const button = wrapper.find("[data-testid='navbar-btn']");
+    button.simulate('click');
+    expect(wrapper.find("[data-testid='modal']")).toHaveLength(1);
+  });
 });

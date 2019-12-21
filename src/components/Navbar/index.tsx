@@ -3,17 +3,19 @@ import Button from '../Button';
 import './Navbar.scss';
 
 interface Props {
-  handleNewContact: () => void;
+  handleToggleModal: () => void;
 }
 
-const Navbar: React.FC<Props> = ({ handleNewContact }) => {
+const Navbar: React.FC<Props> = ({ handleToggleModal }) => {
   return (
     <div className="navbar">
       <div className="container">
         <h3 className="brand">ContactBook</h3>
         <div className="links">
           <p className="favorite-link">Favorite Contacts</p>
-          <Button onClick={handleNewContact}>New Contact</Button>
+          <Button data-testid="navbar-btn" onClick={handleToggleModal}>
+            New Contact
+          </Button>
         </div>
       </div>
     </div>
