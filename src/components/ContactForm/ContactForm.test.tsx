@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ContactCard from './';
+import ContactForm from './';
 
 it('renders without crashing', () => {
-  shallow(<ContactCard />);
+  shallow(<ContactForm />);
 });

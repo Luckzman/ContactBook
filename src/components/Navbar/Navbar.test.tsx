@@ -3,6 +3,6 @@ import { shallow } from 'enzyme';
 import Navbar from './';
 
 it('renders without crashing', () => {
-  const wrapper = shallow(<Navbar />);
-  expect(wrapper).toMatchSnapshot();
+  const props = { handleToggleModal: jest.fn() };
+  shallow(<Navbar {...props} />);
 });
