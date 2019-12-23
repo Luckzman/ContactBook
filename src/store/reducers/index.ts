@@ -1,21 +1,20 @@
 import actionTypes from '../actionTypes';
 
-const { CREATE_CONTACT, CLOSE_TOAST } = actionTypes;
+const { CREATE_CONTACT, GET_ALL_CONTACTS } = actionTypes;
 
-export const contacts = (state = {}, action: { payload: {}; type: string }): {} => {
+export const contact = (state = {}, action: any) => {
   switch (action.type) {
     case CREATE_CONTACT:
-      return {
-        ...state,
-        contact: action.payload,
-        isCreated: true,
-        message: 'Contact successfully created',
-      };
-    case CLOSE_TOAST:
-      return {
-        ...state,
-        isCreated: false,
-      };
+      return { ...state, ...action.payload, isCreated: true, msg: 'Contact Created Successfully' };
+    default:
+      return state;
+  }
+};
+
+export const contacts = (state = [], action: any) => {
+  switch (action.type) {
+    case GET_ALL_CONTACTS:
+      return action.payload || state;
     default:
       return state;
   }

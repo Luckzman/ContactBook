@@ -2,11 +2,13 @@
 
 .card{
   width: 170px;
+  min-width: 170px;
   box-shadow: 1px 1px 5px 1px map-get($colors, grey-color);
   border-radius: 20px;
   overflow: hidden;
   .card-details{
     width: 100%;
+    min-height: 62px;
     margin-top: 10px;
     .name{
       margin: 5px auto;
