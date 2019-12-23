@@ -5,6 +5,7 @@
   background-color: map-get($colors, faint-bg);
   display: flex;
   justify-content: center;
+  border-bottom: 2px solid map-get($colors, nav-border);
   .container{
     width: 90%;
     display: flex;

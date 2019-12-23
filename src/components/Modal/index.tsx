@@ -1,9 +1,9 @@
-import React, { ReactChild } from 'react';
+import * as React from 'react';
 import { ReactComponent as CloseIcon } from '../../assets/times-solid.svg';
 import './Modal.scss';
 
 interface Props {
-  children: ReactChild;
+  children: React.ReactChild;
   hideModal: (event: React.MouseEvent<SVGSVGElement>) => void;
 }
 
