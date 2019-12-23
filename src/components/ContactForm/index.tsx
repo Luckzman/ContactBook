@@ -41,6 +41,7 @@ const ContactForm: React.FC<Props> = ({ closeModal }) => {
     } else {
       dispatch(createContact(input));
       closeModal();
+      window.location.reload();
     }
   };
 

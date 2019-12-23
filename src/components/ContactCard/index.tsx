@@ -4,6 +4,15 @@ import { ReactComponent as LikeIcon } from '../../assets/heart-regular.svg';
 import { ReactComponent as EditIcon } from '../../assets/user-edit-solid.svg';
 import './ContactCard.scss';
 
+interface Contact {
+  name: string;
+  email: string;
+  phone: string;
+}
+interface Prop {
+  contact: Contact;
+}
+
 const footerIcon = (Component: React.ReactElement, Text: string, styleText?: string): React.ReactElement => {
   return (
     <div className="footer">
@@ -16,18 +25,19 @@ const footerIcon = (Component: React.ReactElement, Text: string, styleText?: str
 const likeIcon = <LikeIcon className="icon" />;
 const editIcon = <EditIcon className="icon" />;
 
-const ContactCard: React.FC = () => {
+const ContactCard: React.SFC<any> = ({ contact }: any): React.ReactElement<Prop> => {
+  const { name, email, phone } = contact.contact;
   return (
     <div className="card">
       <div className="card-details">
         <h4 className="name">
-          <span className="word-break">Mary Ann</span>
+          <span className="word-break">{name}</span>
         </h4>
         <p className="details">
-          <span className="word-break">maryann@gmail.com</span>
+          <span className="word-break">{email}</span>
         </p>
         <p className="details">
-          <span className="word-break">07034222671</span>
+          <span className="word-break">{phone}</span>
         </p>
       </div>
       <div className="card-footer">
