@@ -1,0 +1,44 @@
+@import '../../styles/index.scss';
+
+.form-group{
+  margin-bottom: 10px;
+  label{
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: map-get($colors, dark-grey );
+  }
+  input{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid map-get($colors, light-grey);
+    border-radius: 5px;
+    outline: none;
+    
+  }
+  .error{
+    border-color: map-get($error, error-red);
+    color: map-get($error, error-pink);
+    &::placeholder{
+      color: map-get($error, error-faint);
+    }
+  }
+  .error-label{
+    color: map-get($error, error-red);
+  }
+  .error-text{
+    display: inline-block;
+    font-size: 11px;
+    margin: 3px;
+    color: map-get($error, error-red);
+  }
+  .error-icon{
+    height: 11px;
+    width: 11px;
+    color: map-get($error, error-red);
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+}

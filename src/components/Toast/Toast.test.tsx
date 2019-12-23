@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ContactForm from './';
+import Toast from './';
 
 it('renders without crashing', () => {
-  shallow(<ContactForm />);
+  const props = { show: true, msg: 'test' };
+  shallow(<Toast {...props} />);
 });

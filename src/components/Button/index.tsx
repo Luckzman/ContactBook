@@ -3,12 +3,14 @@ import './Button.scss';
 
 interface Props {
   children: React.ReactNode;
-  onClick: (event: React.MouseEvent<HTMLElement>) => void;
+  className?: string;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onSubmit?: (event: React.FormEvent<HTMLButtonElement>) => void;
+  type?: 'button' | 'submit' | 'reset';
 }
-
-const Button: React.FC<Props> = ({ children, onClick }) => {
+const Button: React.FC<Props> = ({ children, onClick, className, type = 'button', onSubmit }) => {
   return (
-    <button className="btn" type="button" onClick={onClick}>
+    <button className={`btn ${className}`} type={type} onClick={onClick} onSubmit={onSubmit}>
       {children}
     </button>
   );

@@ -1,0 +1,4 @@
+export default {
+  CREATE_CONTACT: 'CREATE_CONTACT',
+  CLOSE_TOAST: 'CLOSE_TOAST',
+};

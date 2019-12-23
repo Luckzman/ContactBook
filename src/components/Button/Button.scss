@@ -6,6 +6,7 @@
   padding: 10px;
   border: 1px solid transparent;
   border-radius: 5px;
+  outline: none;
   box-shadow: 1px 1px 5px 1px map-get($colors, grey-color );
   cursor: pointer;
   &:hover{
