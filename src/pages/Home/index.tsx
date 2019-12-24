@@ -46,26 +46,22 @@ const Home: React.FC = () => {
   return (
     <div className="home">
       <Navbar handleToggleModal={handleToggleModal} handleLikedContact={handleGetFavoriteContact} />
-      <div className="container">
-        <h2>{`${displayFavorite ? 'Favorite' : 'All'} Contacts`}</h2>
-        <div className="card-container">
-          {displayFavorite
-            ? favorites &&
-              favorites.map((contact, i) => (
-                <ContactCard
-                  key={`contact${i}`}
-                  contact={contact}
-                  displayModal={handleToggleModal}
-                  favorite={true}
-                  // makeFormEditable={makeFormEditable}
-                />
-              ))
-            : contacts &&
-              contacts.map((contact, i) => (
-                <ContactCard key={`contact${i}`} contact={contact} displayModal={handleToggleModal} />
-              ))}
+      {/* <div className="main"> */}
+        <div className="container">
+          <h2>{`${displayFavorite ? 'Favorite' : 'All'} Contacts`}</h2>
+          <div className="card-container">
+            {displayFavorite
+              ? favorites &&
+                favorites.map((contact, i) => (
+                  <ContactCard key={`contact${i}`} contact={contact} displayModal={handleToggleModal} favorite={true} />
+                ))
+              : contacts &&
+                contacts.map((contact, i) => (
+                  <ContactCard key={`contact${i}`} contact={contact} displayModal={handleToggleModal} />
+                ))}
+          </div>
         </div>
-      </div>
+      {/* </div> */}
       {toggleModal && (
         <Modal hideModal={handleToggleModal}>
           {editContactData && editContactData.id ? (

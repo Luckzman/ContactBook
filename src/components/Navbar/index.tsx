@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../Button';
 import './Navbar.scss';
+// import { Link } from 'react-router-dom';
 
 interface Props {
   handleToggleModal: () => void;
@@ -16,6 +17,7 @@ const Navbar: React.FC<Props> = ({ handleToggleModal, handleLikedContact }) => {
           <p className="favorite-link" onClick={handleLikedContact}>
             Favorite Contacts
           </p>
+          <div className="pointer"></div>
           <Button data-testid="navbar-btn" onClick={handleToggleModal}>
             New Contact
           </Button>
