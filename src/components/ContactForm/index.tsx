@@ -5,7 +5,6 @@ import Input from '../Input';
 import contactInputValidator from '../../utils/validate';
 import './ContactForm.scss';
 import { createContact, editContact } from '../../store/actions';
-// import { contact, contacts } from '../../store/reducers';
 
 interface Contact {
   name: string;
@@ -23,16 +22,9 @@ interface Props {
 
 const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
   const initialState = { name: '', phone: '', email: '' };
-  // const [makeFormEditable, setMakeFormEditable] = React.useState(false);
-  // const { contact } = editContactData;
-  console.log(editContactData, 'editContact');
   const [input, setInput] = React.useState(initialState);
   const [error, setError] = React.useState(initialState);
   const dispatch = useDispatch();
-
-  // if (editContactData) {
-  //   setMakeFormEditable(true);
-  // }
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
@@ -60,7 +52,6 @@ const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
         const editData = { input, id: editContactData.id };
         dispatch(editContact(editData));
       } else {
-        console.log(input, 'input');
         dispatch(createContact(input));
       }
       closeModal();

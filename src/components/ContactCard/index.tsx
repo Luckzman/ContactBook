@@ -20,9 +20,9 @@ const ContactCard: React.SFC<any> = ({ contact, favorite, displayModal }: any): 
   const { id: string, isLiked: boolean } = contact;
   const dispatch = useDispatch();
 
-  const footerIcon = (Component: React.ReactElement, Text: string, styleText?: string): React.ReactElement => {
+  const footerIcon = (Component: React.ReactElement, Text: string, like: string, styleText?: string): React.ReactElement => {
     return (
-      <div className="footer">
+      <div className={`footer ${like}`}>
         {Component}
         <p className={`icon-text ${styleText}`}>{Text}</p>
       </div>
@@ -47,7 +47,7 @@ const ContactCard: React.SFC<any> = ({ contact, favorite, displayModal }: any): 
   ) : (
     <LikeIcon onClick={handleLike} className="icon" />
   );
-  const editIcon = <EditIcon className="icon" onClick={handleEditContact} />;
+  const editIcon = <EditIcon className="icon edit-icon" onClick={handleEditContact} />;
 
   return (
     <div className="card">
@@ -64,8 +64,8 @@ const ContactCard: React.SFC<any> = ({ contact, favorite, displayModal }: any): 
       </div>
       <div className="card-footer">
         <div className="footer-icon">
-          {footerIcon(likeIcon, `${!contact.isLiked ? 'Like' : 'Unlike'}`)}
-          {footerIcon(editIcon, 'Edit', 'edit')}
+          {footerIcon(likeIcon, `${!contact.isLiked ? 'Like' : 'Unlike'}`, 'like-icon')}
+          {footerIcon(editIcon, 'Edit', 'edit-icon', 'edit')}
         </div>
       </div>
     </div>
