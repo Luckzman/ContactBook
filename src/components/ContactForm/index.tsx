@@ -58,9 +58,9 @@ const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
     }
   };
 
-  const newContactForm = (
+  return (
     <div className="contact-form">
-      <h3>{'New Contact Form'}</h3>
+      <h3>{`${editContactData ? 'Edit' : 'New'} Contact Form`}</h3>
       <form>
         <Input
           name="name"
@@ -70,7 +70,7 @@ const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
           label="Name"
           onBlur={handleOnBlur}
           onChange={handleOnChange}
-          placeholder={'John Doe'}
+          placeholder={editContactData?.contact.name || 'Jon Doe'}
         />
         <Input
           name="email"
@@ -80,7 +80,7 @@ const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
           label="Email"
           onBlur={handleOnBlur}
           onChange={handleOnChange}
-          placeholder="email@email.com"
+          placeholder={editContactData?.contact.email || 'email@email.com'}
         />
         <Input
           name="phone"
@@ -90,57 +90,14 @@ const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
           label="Phone"
           onBlur={handleOnBlur}
           onChange={handleOnChange}
-          placeholder="011-223-44556"
+          placeholder={editContactData?.contact.phone || '090-23-384-556'}
         />
         <Button className="form-btn" type="submit" onClick={handleSubmit}>
-          {'Create Contact'}
+          {`${editContactData ? 'Edit' : 'New'} Contact`}
         </Button>
       </form>
     </div>
   );
-
-  const editContactForm = (
-    <div className="contact-form">
-      <h3>{'Edit Contact Form'}</h3>
-      <form>
-        <Input
-          name="name"
-          error={error.name.length > 0}
-          errorMsg={error.name}
-          value={input.name}
-          label="Name"
-          onBlur={handleOnBlur}
-          onChange={handleOnChange}
-          placeholder={editContactData?.contact.name || ''}
-        />
-        <Input
-          name="email"
-          error={error.email.length > 0}
-          errorMsg={error.email}
-          value={input.email}
-          label="Email"
-          onBlur={handleOnBlur}
-          onChange={handleOnChange}
-          placeholder={editContactData?.contact.email || ''}
-        />
-        <Input
-          name="phone"
-          error={error.phone.length > 0}
-          errorMsg={error.phone}
-          value={input.phone}
-          label="Phone"
-          onBlur={handleOnBlur}
-          onChange={handleOnChange}
-          placeholder={editContactData?.contact.phone || ''}
-        />
-        <Button className="form-btn" type="submit" onClick={handleSubmit}>
-          {'Edit Contact'}
-        </Button>
-      </form>
-    </div>
-  );
-
-  return editContactData ? editContactForm : newContactForm;
 };
 
 export default ContactForm;

@@ -20,7 +20,12 @@ const ContactCard: React.SFC<any> = ({ contact, favorite, displayModal }: any): 
   const { id: string, isLiked: boolean } = contact;
   const dispatch = useDispatch();
 
-  const footerIcon = (Component: React.ReactElement, Text: string, like: string, styleText?: string): React.ReactElement => {
+  const footerIcon = (
+    Component: React.ReactElement,
+    Text: string,
+    like: string,
+    styleText?: string,
+  ): React.ReactElement => {
     return (
       <div className={`footer ${like}`}>
         {Component}

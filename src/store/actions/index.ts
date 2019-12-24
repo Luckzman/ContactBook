@@ -92,7 +92,7 @@ export const editContact = (payload: any): {} => {
 
 export const getFavouriteContacts = (): {} => {
   const localStore = loadState('contact');
-  const favoriteContact = localStore.filter((contact: any) => {
+  const favoriteContact = localStore.filter((contact: { isLiked: boolean }): {} | undefined => {
     if (contact.isLiked) {
       return contact;
     }

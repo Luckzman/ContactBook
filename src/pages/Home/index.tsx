@@ -3,7 +3,6 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import ContactCard from '../../components/ContactCard';
 import Navbar from '../../components/Navbar';
 import Modal from '../../components/Modal';
-import Toast from '../../components/Toast';
 import { getAllContacts, getFavouriteContacts } from '../../store/actions';
 import ContactForm from '../../components/ContactForm';
 
@@ -24,7 +23,6 @@ const Home: React.FC = () => {
   const [toggleModal, setToggleModal] = useState(false);
   const [displayFavorite, setdisplayFavorite] = useState(false);
   const [editContactData, setEditContactData] = useState<any>({});
-  const contact = useSelector((state: Store) => state.contact, shallowEqual);
   const contacts = useSelector((state: Store) => state.contacts, shallowEqual);
   const dispatch = useDispatch();
   const favorites = useSelector((state: Store) => state.favorites, shallowEqual);
@@ -32,6 +30,11 @@ const Home: React.FC = () => {
   const handleToggleModal = (data?: {}): void => {
     setEditContactData(data);
     setToggleModal(!toggleModal);
+  };
+
+  const handleAllContact = (): void => {
+    setdisplayFavorite(false);
+    dispatch(getAllContacts());
   };
 
   const handleGetFavoriteContact = (): void => {
@@ -45,23 +48,26 @@ const Home: React.FC = () => {
 
   return (
     <div className="home">
-      <Navbar handleToggleModal={handleToggleModal} handleLikedContact={handleGetFavoriteContact} />
-      {/* <div className="main"> */}
-        <div className="container">
-          <h2>{`${displayFavorite ? 'Favorite' : 'All'} Contacts`}</h2>
-          <div className="card-container">
-            {displayFavorite
-              ? favorites &&
-                favorites.map((contact, i) => (
-                  <ContactCard key={`contact${i}`} contact={contact} displayModal={handleToggleModal} favorite={true} />
-                ))
-              : contacts &&
-                contacts.map((contact, i) => (
-                  <ContactCard key={`contact${i}`} contact={contact} displayModal={handleToggleModal} />
-                ))}
-          </div>
+      <Navbar
+        displayFavorite={displayFavorite}
+        handleToggleModal={handleToggleModal}
+        handleLikedContact={handleGetFavoriteContact}
+        handleAllContact={handleAllContact}
+      />
+      <div className="container">
+        {contacts.length < 1 ? <h2>No Contacts</h2> : <h2>{`${displayFavorite ? 'Favorite' : 'All'} Contacts`}</h2>}
+        <div className="card-container">
+          {displayFavorite
+            ? favorites &&
+              favorites.map((contact, i) => (
+                <ContactCard key={`contact${i}`} contact={contact} displayModal={handleToggleModal} favorite={true} />
+              ))
+            : contacts &&
+              contacts.map((contact, i) => (
+                <ContactCard key={`contact${i}`} contact={contact} displayModal={handleToggleModal} />
+              ))}
         </div>
-      {/* </div> */}
+      </div>
       {toggleModal && (
         <Modal hideModal={handleToggleModal}>
           {editContactData && editContactData.id ? (
@@ -71,7 +77,6 @@ const Home: React.FC = () => {
           )}
         </Modal>
       )}
-      {/* {contact.isCreated && <Toast msg={contact.message} show={contact.isCreated} />} */}
     </div>
   );
 };

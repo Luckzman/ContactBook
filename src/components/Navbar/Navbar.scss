@@ -12,7 +12,7 @@
     justify-content: space-between;
     .brand{
       color: map-get($colors, logo-color);
-      text-shadow: 1px 1px 10px 10px grey;
+      cursor: pointer;
     }
     .links{
       display: flex;
@@ -27,23 +27,21 @@
         &:hover{
           color: map-get($colors , brand-color );
           ~ .pointer{
-            opacity: .6;
-            bottom: 7px;
+            opacity: .4;
           }
         }
       }
       .pointer{
         position: absolute;
-        bottom: -2px;
+        bottom: 15px;
         left: 50px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
+        width: 15px;
+        height: 0.3px;
         background-color: map-get($colors, brand-color);
-        background: radial-gradient(white, map-get($colors, brand-color), white);
-        box-shadow: 1px 1px 5px 2px grey;
+        box-shadow: 1px 1px 2px 2px map-get($colors, brand-color);;
         opacity: 0;
-        transition: all 0.2s;
+        transition: all 0.5s;
+        overflow: hidden;
       }
     }
   }
