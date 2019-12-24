@@ -23,13 +23,14 @@ interface Store {
 const Home: React.FC = () => {
   const [toggleModal, setToggleModal] = useState(false);
   const [displayFavorite, setdisplayFavorite] = useState(false);
+  const [editContactData, setEditContactData] = useState<any>({});
   const contact = useSelector((state: Store) => state.contact, shallowEqual);
   const contacts = useSelector((state: Store) => state.contacts, shallowEqual);
   const dispatch = useDispatch();
   const favorites = useSelector((state: Store) => state.favorites, shallowEqual);
 
-  console.log(favorites, 'favorites');
-  const handleToggleModal = (): void => {
+  const handleToggleModal = (data?: {}): void => {
+    setEditContactData(data);
     setToggleModal(!toggleModal);
   };
 
@@ -49,13 +50,29 @@ const Home: React.FC = () => {
         <h2>{`${displayFavorite ? 'Favorite' : 'All'} Contacts`}</h2>
         <div className="card-container">
           {displayFavorite
-            ? favorites && favorites.map((contact, i) => <ContactCard key={`contact${i}`} contact={contact} />)
-            : contacts && contacts.map((contact, i) => <ContactCard key={`contact${i}`} contact={contact} />)}
+            ? favorites &&
+              favorites.map((contact, i) => (
+                <ContactCard
+                  key={`contact${i}`}
+                  contact={contact}
+                  displayModal={handleToggleModal}
+                  favorite={true}
+                  // makeFormEditable={makeFormEditable}
+                />
+              ))
+            : contacts &&
+              contacts.map((contact, i) => (
+                <ContactCard key={`contact${i}`} contact={contact} displayModal={handleToggleModal} />
+              ))}
         </div>
       </div>
       {toggleModal && (
         <Modal hideModal={handleToggleModal}>
-          <ContactForm closeModal={handleToggleModal} />
+          {editContactData && editContactData.id ? (
+            <ContactForm closeModal={handleToggleModal} editContactData={editContactData} />
+          ) : (
+            <ContactForm closeModal={handleToggleModal} />
+          )}
         </Modal>
       )}
       {/* {contact.isCreated && <Toast msg={contact.message} show={contact.isCreated} />} */}
