@@ -24,9 +24,9 @@ const Home: React.FC = () => {
   const contact = useSelector((state: Store) => state.contact, shallowEqual);
   const contacts = useSelector((state: Store) => state.contacts, shallowEqual);
   const dispatch = useDispatch();
-  const store = useSelector((state: Store) => state);
+  // const store = useSelector((state: Store) => state);
 
-  console.log(store, 'store');
+  console.log(contacts, 'contacts');
   const handleToggleModal = (): void => {
     setToggleModal(!toggleModal);
   };

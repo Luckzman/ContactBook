@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { likeFavoriteContact } from '../../store/actions';
 import { ReactComponent as LikeIcon } from '../../assets/heart-regular.svg';
-// import { ReactComponent as LikeSolidIcon } from '../../assets/heart-solid.svg';
+import { ReactComponent as LikeSolidIcon } from '../../assets/heart-solid.svg';
 import { ReactComponent as EditIcon } from '../../assets/user-edit-solid.svg';
 import './ContactCard.scss';
 
@@ -13,20 +15,33 @@ interface Prop {
   contact: Contact;
 }
 
-const footerIcon = (Component: React.ReactElement, Text: string, styleText?: string): React.ReactElement => {
-  return (
-    <div className="footer">
-      {Component}
-      <p className={`icon-text ${styleText}`}>{Text}</p>
-    </div>
-  );
-};
-
-const likeIcon = <LikeIcon className="icon" />;
-const editIcon = <EditIcon className="icon" />;
-
 const ContactCard: React.SFC<any> = ({ contact }: any): React.ReactElement<Prop> => {
+  // console.log(contact, 'contact');
   const { name, email, phone } = contact.contact;
+  const { id: string, isLiked: boolean } = contact;
+  const dispatch = useDispatch();
+
+  const footerIcon = (Component: React.ReactElement, Text: string, styleText?: string): React.ReactElement => {
+    return (
+      <div className="footer">
+        {Component}
+        <p className={`icon-text ${styleText}`}>{Text}</p>
+      </div>
+    );
+  };
+
+  const handleLike = (): void => {
+    dispatch(likeFavoriteContact({ id: string, isLiked: boolean }));
+    window.location.reload();
+  };
+
+  const likeIcon = contact.isLiked ? (
+    <LikeSolidIcon onClick={handleLike} className="icon" />
+  ) : (
+    <LikeIcon onClick={handleLike} className="icon" />
+  );
+  const editIcon = <EditIcon className="icon" />;
+
   return (
     <div className="card">
       <div className="card-details">
