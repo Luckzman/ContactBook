@@ -1,7 +1,6 @@
 import actionTypes from '../actionTypes';
-import { saveState, loadState } from '../../utils/localStorage';
-import { v4 } from 'node-uuid';
-const { CREATE_CONTACT, GET_ALL_CONTACTS, LIKE_FAVORITE_CONTACT } = actionTypes;
+import { saveState } from '../../utils/localStorage';
+const { CREATE_CONTACT, GET_FAVORITE_CONTACT, GET_ALL_CONTACTS, LIKE_FAVORITE_CONTACT } = actionTypes;
 
 interface Contact {
   id: string;
@@ -41,16 +40,18 @@ export const contacts = (state = [], action: any) => {
     case GET_ALL_CONTACTS:
       return action.payload || state;
     case LIKE_FAVORITE_CONTACT:
-      console.log(state, 'state');
-      // const contact = state.map((contact: Contact) => {
-      //   const { id, isLiked } = action.payload;
-      //   if (contact.id === id) {
-      //     contact.isLiked = isLiked;
-      //   }
-      // });
-      // console.log(contact);
-      // saveState(contact);
+      return action.payload || state;
+    case GET_FAVORITE_CONTACT:
       return action.payload;
+    default:
+      return state;
+  }
+};
+
+export const favorites = (state = [], action: any) => {
+  switch (action.type) {
+    case GET_FAVORITE_CONTACT:
+      return action.payload || state;
     default:
       return state;
   }

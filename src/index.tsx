@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './store/index';
 import App from './App';
 import './index.css';
+import { loadState } from './utils/localStorage';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 declare global {
@@ -15,6 +16,8 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// const persistState = loadState();
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
