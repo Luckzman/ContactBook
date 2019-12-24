@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { likeFavoriteContact } from '../../store/actions';
+import { likeAllContacts, likeFavoriteContacts } from '../../store/actions';
 import { ReactComponent as LikeIcon } from '../../assets/heart-regular.svg';
 import { ReactComponent as LikeSolidIcon } from '../../assets/heart-solid.svg';
 import { ReactComponent as EditIcon } from '../../assets/user-edit-solid.svg';
@@ -15,8 +15,7 @@ interface Prop {
   contact: Contact;
 }
 
-const ContactCard: React.SFC<any> = ({ contact }: any): React.ReactElement<Prop> => {
-  console.log(contact, 'contact');
+const ContactCard: React.SFC<any> = ({ contact, favorite, displayModal }: any): React.ReactElement<Prop> => {
   const { name, email, phone } = contact.contact;
   const { id: string, isLiked: boolean } = contact;
   const dispatch = useDispatch();
@@ -31,8 +30,16 @@ const ContactCard: React.SFC<any> = ({ contact }: any): React.ReactElement<Prop>
   };
 
   const handleLike = (): void => {
-    dispatch(likeFavoriteContact({ id: string, isLiked: boolean }));
-    window.location.reload();
+    if (favorite) {
+      dispatch(likeFavoriteContacts({ id: string, isLiked: boolean }));
+    } else {
+      dispatch(likeAllContacts({ id: string, isLiked: boolean }));
+      window.location.reload();
+    }
+  };
+
+  const handleEditContact = (): void => {
+    displayModal(contact);
   };
 
   const likeIcon = contact.isLiked ? (
@@ -40,7 +47,7 @@ const ContactCard: React.SFC<any> = ({ contact }: any): React.ReactElement<Prop>
   ) : (
     <LikeIcon onClick={handleLike} className="icon" />
   );
-  const editIcon = <EditIcon className="icon" />;
+  const editIcon = <EditIcon className="icon" onClick={handleEditContact} />;
 
   return (
     <div className="card">
@@ -57,7 +64,7 @@ const ContactCard: React.SFC<any> = ({ contact }: any): React.ReactElement<Prop>
       </div>
       <div className="card-footer">
         <div className="footer-icon">
-          {footerIcon(likeIcon, 'Like')}
+          {footerIcon(likeIcon, `${!contact.isLiked ? 'Like' : 'Unlike'}`)}
           {footerIcon(editIcon, 'Edit', 'edit')}
         </div>
       </div>

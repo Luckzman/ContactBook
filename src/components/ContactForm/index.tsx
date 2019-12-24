@@ -4,18 +4,35 @@ import Button from '../Button';
 import Input from '../Input';
 import contactInputValidator from '../../utils/validate';
 import './ContactForm.scss';
-import { createContact } from '../../store/actions';
+import { createContact, editContact } from '../../store/actions';
+// import { contact, contacts } from '../../store/reducers';
+
+interface Contact {
+  name: string;
+  email: string;
+  phone: string;
+}
 
 interface Props {
   closeModal: () => void;
+  editContactData?: {
+    id: string;
+    contact: Contact;
+  };
 }
 
-const ContactForm: React.FC<Props> = ({ closeModal }) => {
+const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
   const initialState = { name: '', phone: '', email: '' };
-
+  // const [makeFormEditable, setMakeFormEditable] = React.useState(false);
+  // const { contact } = editContactData;
+  console.log(editContactData, 'editContact');
   const [input, setInput] = React.useState(initialState);
   const [error, setError] = React.useState(initialState);
   const dispatch = useDispatch();
+
+  // if (editContactData) {
+  //   setMakeFormEditable(true);
+  // }
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
@@ -39,15 +56,20 @@ const ContactForm: React.FC<Props> = ({ closeModal }) => {
     if (containsError) {
       setError(errors);
     } else {
-      dispatch(createContact(input));
+      if (editContactData && editContactData.contact) {
+        const editData = { input, id: editContactData.id };
+        dispatch(editContact(editData));
+      } else {
+        console.log(input, 'input');
+        dispatch(createContact(input));
+      }
       closeModal();
-      window.location.reload();
     }
   };
 
-  return (
+  const newContactForm = (
     <div className="contact-form">
-      <h3>New Contact Form</h3>
+      <h3>{'New Contact Form'}</h3>
       <form>
         <Input
           name="name"
@@ -57,7 +79,7 @@ const ContactForm: React.FC<Props> = ({ closeModal }) => {
           label="Name"
           onBlur={handleOnBlur}
           onChange={handleOnChange}
-          placeholder="John Doe"
+          placeholder={'John Doe'}
         />
         <Input
           name="email"
@@ -80,11 +102,54 @@ const ContactForm: React.FC<Props> = ({ closeModal }) => {
           placeholder="011-223-44556"
         />
         <Button className="form-btn" type="submit" onClick={handleSubmit}>
-          Create Contact
+          {'Create Contact'}
         </Button>
       </form>
     </div>
   );
+
+  const editContactForm = (
+    <div className="contact-form">
+      <h3>{'Edit Contact Form'}</h3>
+      <form>
+        <Input
+          name="name"
+          error={error.name.length > 0}
+          errorMsg={error.name}
+          value={input.name}
+          label="Name"
+          onBlur={handleOnBlur}
+          onChange={handleOnChange}
+          placeholder={editContactData?.contact.name || ''}
+        />
+        <Input
+          name="email"
+          error={error.email.length > 0}
+          errorMsg={error.email}
+          value={input.email}
+          label="Email"
+          onBlur={handleOnBlur}
+          onChange={handleOnChange}
+          placeholder={editContactData?.contact.email || ''}
+        />
+        <Input
+          name="phone"
+          error={error.phone.length > 0}
+          errorMsg={error.phone}
+          value={input.phone}
+          label="Phone"
+          onBlur={handleOnBlur}
+          onChange={handleOnChange}
+          placeholder={editContactData?.contact.phone || ''}
+        />
+        <Button className="form-btn" type="submit" onClick={handleSubmit}>
+          {'Edit Contact'}
+        </Button>
+      </form>
+    </div>
+  );
+
+  return editContactData ? editContactForm : newContactForm;
 };
 
 export default ContactForm;
