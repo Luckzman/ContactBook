@@ -2,7 +2,7 @@ import { v4 } from 'node-uuid';
 import actionTypes from '../actionTypes';
 import { saveState, loadState } from '../../utils/localStorage';
 
-const { CREATE_CONTACT, GET_ALL_CONTACTS, LIKE_FAVORITE_CONTACT } = actionTypes;
+const { CREATE_CONTACT, GET_FAVORITE_CONTACT, GET_ALL_CONTACTS, LIKE_FAVORITE_CONTACT } = actionTypes;
 
 export const createContact = (contact: {}): {} => {
   return (dispatch: any, getState: any): {} => {
@@ -13,9 +13,9 @@ export const createContact = (contact: {}): {} => {
       isCreated: true,
       msg: 'Contact Created Successfully',
     };
-    const localStore = loadState() ? loadState() : getState().contacts;
+    const localStore = loadState('contact') ? loadState('contact') : getState().contacts;
     localStore.push({ ...payload });
-    saveState(localStore);
+    saveState('contact', localStore);
     return dispatch({
       type: CREATE_CONTACT,
       payload,
@@ -24,7 +24,7 @@ export const createContact = (contact: {}): {} => {
 };
 
 export const getAllContacts = (): {} => {
-  const payload = loadState();
+  const payload = loadState('contact');
   return (dispatch: any, getState: any): {} => {
     return dispatch({
       type: GET_ALL_CONTACTS,
@@ -42,10 +42,23 @@ export const likeFavoriteContact = (payload: { id: string; isLiked: boolean }): 
       }
       return contact;
     });
-    saveState(likedContact);
+    saveState('contact', likedContact);
     return dispatch({
       type: LIKE_FAVORITE_CONTACT,
       payload: likedContact,
+    });
+  };
+};
+
+export const getFavouriteContacts = (): {} => {
+  const localStore = loadState('contact');
+  const favoriteContact = localStore.filter((contact: any) => contact.isLiked);
+  const contact = favoriteContact ? favoriteContact : [];
+  saveState('favorite', contact);
+  return (dispatch: any) => {
+    return dispatch({
+      type: GET_FAVORITE_CONTACT,
+      payload: contact,
     });
   };
 };

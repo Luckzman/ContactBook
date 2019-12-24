@@ -4,7 +4,7 @@ import ContactCard from '../../components/ContactCard';
 import Navbar from '../../components/Navbar';
 import Modal from '../../components/Modal';
 import Toast from '../../components/Toast';
-import { getAllContacts } from '../../store/actions';
+import { getAllContacts, getFavouriteContacts } from '../../store/actions';
 import ContactForm from '../../components/ContactForm';
 
 import './Home.scss';
@@ -17,18 +17,25 @@ interface Contact {
 interface Store {
   contact: Contact;
   contacts: Contact[];
+  favorites: Contact[];
 }
 
 const Home: React.FC = () => {
   const [toggleModal, setToggleModal] = useState(false);
+  const [displayFavorite, setdisplayFavorite] = useState(false);
   const contact = useSelector((state: Store) => state.contact, shallowEqual);
   const contacts = useSelector((state: Store) => state.contacts, shallowEqual);
   const dispatch = useDispatch();
-  // const store = useSelector((state: Store) => state);
+  const favorites = useSelector((state: Store) => state.favorites, shallowEqual);
 
-  console.log(contacts, 'contacts');
+  console.log(favorites, 'favorites');
   const handleToggleModal = (): void => {
     setToggleModal(!toggleModal);
+  };
+
+  const handleGetFavoriteContact = (): void => {
+    dispatch(getFavouriteContacts());
+    setdisplayFavorite(true);
   };
 
   useEffect(() => {
@@ -37,11 +44,13 @@ const Home: React.FC = () => {
 
   return (
     <div className="home">
-      <Navbar handleToggleModal={handleToggleModal} />
+      <Navbar handleToggleModal={handleToggleModal} handleLikedContact={handleGetFavoriteContact} />
       <div className="container">
-        <h2>All Contacts</h2>
+        <h2>{`${displayFavorite ? 'Favorite' : 'All'} Contacts`}</h2>
         <div className="card-container">
-          {contacts && contacts.map((contact, i) => <ContactCard key={`contact${i}`} contact={contact} />)}
+          {displayFavorite
+            ? favorites && favorites.map((contact, i) => <ContactCard key={`contact${i}`} contact={contact} />)
+            : contacts && contacts.map((contact, i) => <ContactCard key={`contact${i}`} contact={contact} />)}
         </div>
       </div>
       {toggleModal && (

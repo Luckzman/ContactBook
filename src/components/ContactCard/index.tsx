@@ -16,7 +16,7 @@ interface Prop {
 }
 
 const ContactCard: React.SFC<any> = ({ contact }: any): React.ReactElement<Prop> => {
-  // console.log(contact, 'contact');
+  console.log(contact, 'contact');
   const { name, email, phone } = contact.contact;
   const { id: string, isLiked: boolean } = contact;
   const dispatch = useDispatch();
