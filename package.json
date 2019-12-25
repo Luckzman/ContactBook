@@ -33,6 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "yarn test -- --coverage",
+    "cypress:open": "yarn run cypress open",
     "cypress:run": "cypress run --record --key=${CYPRESS_RECORD_KEY}",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:run"
   },
