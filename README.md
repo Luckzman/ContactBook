@@ -26,9 +26,9 @@ ContactBook is an app that stores and keep track of contacts
 
 ### Deployment
 
-Ride-My-Way UI is hosted on gh-pages while the app is hosted on Heroku
+ContactBook was hosted on Netlify
 
-- [Netlify app](https://fastfoodfast2018.herokuapp.com/api/v1/order/)
+- [Netlify app](https://mycontact-book.netlify.com/)
 
 ## Application Features
 
