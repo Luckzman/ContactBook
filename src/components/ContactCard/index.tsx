@@ -48,14 +48,14 @@ const ContactCard: React.SFC<any> = ({ contact, favorite, displayModal }: any): 
   };
 
   const likeIcon = contact.isLiked ? (
-    <LikeSolidIcon onClick={handleLike} className="icon" />
+    <LikeSolidIcon data-testid="unlike-btn" onClick={handleLike} className="icon" />
   ) : (
-    <LikeIcon onClick={handleLike} className="icon" />
+    <LikeIcon data-testid="like-btn" onClick={handleLike} className="icon" />
   );
-  const editIcon = <EditIcon className="icon edit-icon" onClick={handleEditContact} />;
+  const editIcon = <EditIcon data-testid="edit" className="icon edit-icon" onClick={handleEditContact} />;
 
   return (
-    <div className="card">
+    <div data-testid="card" className="card">
       <div className="card-details">
         <h4 className="name">
           <span className="word-break">{name}</span>
