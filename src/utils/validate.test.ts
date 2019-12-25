@@ -1,7 +1,6 @@
 import validator from './validate';
 
 describe('validator test', () => {
-  
   it('should check if name input is empty', () => {
     const input = { name: '', email: 'email@email.com', phone: '' };
     const error = validator(input);
