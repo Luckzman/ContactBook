@@ -12,8 +12,8 @@ const {
 } = actionTypes;
 
 export const getAllContacts = (): {} => {
-  const payload = loadState('contact');
   return (dispatch: any, getState: any): {} => {
+    const payload = loadState('contact') ? loadState('contact') : getState().contacts;
     return dispatch({
       type: GET_ALL_CONTACTS,
       payload,
@@ -92,7 +92,8 @@ export const editContact = (payload: any): {} => {
 
 export const getFavouriteContacts = (): {} => {
   const localStore = loadState('contact');
-  const favoriteContact = localStore.filter((contact: { isLiked: boolean }): {} | undefined => {
+  console.log(localStore);
+  const favoriteContact = localStore.filter((contact: { isLiked: boolean }): any => {
     if (contact.isLiked) {
       return contact;
     }
