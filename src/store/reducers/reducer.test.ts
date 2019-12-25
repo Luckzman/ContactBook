@@ -40,12 +40,6 @@ describe('contacts reducer test', () => {
   it('should update store for action type of LIKE_ALL_CONTACT', () => {
     expect(contacts([], { type: LIKE_ALL_CONTACT, payload })).toEqual(payload);
   });
-  it('should update store for action type of GET_ALL_CONTACTS', () => {
-    expect(contacts([], { type: GET_ALL_CONTACTS, payload: [] })).toEqual([]);
-  });
-  it('should update store for action type of LIKE_ALL_CONTACT', () => {
-    expect(contacts([], { type: LIKE_ALL_CONTACT, payload: [] })).toEqual([]);
-  });
   it('should update store for action type of GET_FAVORITE_CONTACT', () => {
     expect(contacts([], { type: GET_FAVORITE_CONTACT, payload })).toEqual(payload);
   });
@@ -55,14 +49,8 @@ describe('contacts reducer test', () => {
   it('should update store for action type of GET_FAVORITE_CONTACT', () => {
     expect(favorites([], { type: GET_FAVORITE_CONTACT, payload })).toEqual(payload);
   });
-  it('should update store for action type of GET_FAVORITE_CONTACT', () => {
-    expect(favorites([], { type: GET_FAVORITE_CONTACT, payload: [] })).toEqual([]);
-  });
   it('should update store for action type of LIKE_FAVORITE_CONTACT', () => {
     expect(favorites([], { type: LIKE_FAVORITE_CONTACT, payload })).toEqual(payload);
-  });
-  it('should update store for action type of LIKE_FAVORITE_CONTACT', () => {
-    expect(favorites([], { type: LIKE_FAVORITE_CONTACT, payload: [] })).toEqual([]);
   });
   it('should create new data in store for action type of CREATE_CONTACT', () => {
     expect(contact({}, { type: CREATE_CONTACT, payload: newContact })).toEqual(newContact);
