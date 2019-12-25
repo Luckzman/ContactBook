@@ -1,6 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import * as redux from 'react-redux';
+import { mount } from 'enzyme';
 import ContactForm from './';
 
 describe('Home Page', () => {

@@ -56,6 +56,6 @@ describe('Home Page', () => {
     const unlikeBtn = wrapper.find("[data-testid='unlike-btn']").first();
     unlikeBtn.simulate('click');
     wrapper.update();
-    expect(wrapper.find("[data-testid='like-btn']").first()).toHaveLength(1);  
+    expect(wrapper.find("[data-testid='like-btn']").first()).toHaveLength(1);
   });
 });

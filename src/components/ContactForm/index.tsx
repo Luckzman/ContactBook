@@ -31,18 +31,9 @@ const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
     setInput({ ...input, [name]: value });
   };
 
-  const handleOnBlur = (): void => {
-    setError(initialState);
-    const errors = contactInputValidator(input);
-    const containsError = Object.values(errors).some(x => x !== null && x !== '');
-    if (containsError) {
-      setError(errors);
-    }
-  };
-
   const handleSubmit = (event: React.MouseEvent<HTMLElement>): void => {
     event.preventDefault();
-    setError(initialState);
+    setError(initialState); // reset error state to  initial state
     const errors = contactInputValidator(input);
     const containsError = Object.values(errors).some(x => x !== null && x !== '');
     if (containsError) {
@@ -68,7 +59,6 @@ const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
           errorMsg={error.name}
           value={input.name}
           label="Name"
-          onBlur={handleOnBlur}
           onChange={handleOnChange}
           placeholder={editContactData?.contact.name || 'Jon Doe'}
         />
@@ -78,7 +68,6 @@ const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
           errorMsg={error.email}
           value={input.email}
           label="Email"
-          onBlur={handleOnBlur}
           onChange={handleOnChange}
           placeholder={editContactData?.contact.email || 'email@email.com'}
         />
@@ -88,7 +77,6 @@ const ContactForm: React.FC<Props> = ({ closeModal, editContactData }) => {
           errorMsg={error.phone}
           value={input.phone}
           label="Phone"
-          onBlur={handleOnBlur}
           onChange={handleOnChange}
           placeholder={editContactData?.contact.phone || '090-23-384-556'}
         />

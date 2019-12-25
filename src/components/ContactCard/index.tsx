@@ -39,7 +39,6 @@ const ContactCard: React.SFC<any> = ({ contact, favorite, displayModal }: any): 
       dispatch(likeFavoriteContacts({ id: string, isLiked: boolean }));
     } else {
       dispatch(likeAllContacts({ id: string, isLiked: boolean }));
-      window.location.reload();
     }
   };
 

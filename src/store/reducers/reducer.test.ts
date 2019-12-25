@@ -41,7 +41,7 @@ describe('contacts reducer test', () => {
     expect(contacts([], { type: LIKE_ALL_CONTACT, payload })).toEqual(payload);
   });
   it('should update store for action type of GET_FAVORITE_CONTACT', () => {
-    expect(contacts([], { type: GET_FAVORITE_CONTACT, payload })).toEqual(payload);
+    expect(favorites([], { type: GET_FAVORITE_CONTACT, payload })).toEqual(payload);
   });
   it('should update store for action type of EDIT_CONTACT', () => {
     expect(contacts([], { type: EDIT_CONTACT, payload })).toEqual(payload);

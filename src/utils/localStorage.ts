@@ -1,16 +1,18 @@
+import { Contact } from '../store/types';
+
 export const loadState = (contact: string): any => {
   try {
     const serializedState = localStorage.getItem(contact);
     if (serializedState === null) {
-      return undefined;
+      return;
     }
     return JSON.parse(serializedState);
   } catch (err) {
-    return undefined;
+    return;
   }
 };
 
-export const saveState = (contact: string, state: any): void => {
+export const saveState = (contact: string, state: Contact[]): void => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(contact, serializedState);

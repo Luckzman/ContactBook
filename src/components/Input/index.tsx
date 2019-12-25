@@ -12,9 +12,21 @@ interface Props {
   error?: boolean;
   errorMsg?: string;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<Props> = ({ name, error, errorMsg, value, label, onChange, placeholder, onBlur, type }) => {
+const Input: React.FC<Props> = ({
+  name,
+  error,
+  errorMsg,
+  value,
+  label,
+  onChange,
+  placeholder,
+  onBlur,
+  onFocus,
+  type,
+}) => {
   return (
     <div className="form-group">
       <label htmlFor={name} className={error ? 'error-label' : ''}>
@@ -28,6 +40,7 @@ const Input: React.FC<Props> = ({ name, error, errorMsg, value, label, onChange,
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        onFocus={onFocus}
         placeholder={placeholder}
         className={error ? 'error' : ''}
       />
