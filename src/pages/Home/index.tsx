@@ -55,7 +55,11 @@ const Home: React.FC = () => {
         handleAllContact={handleAllContact}
       />
       <div className="container">
-        {contacts.length < 1 ? <h2>No Contacts</h2> : <h2>{`${displayFavorite ? 'Favorite' : 'All'} Contacts`}</h2>}
+        {contacts.length < 1 ? (
+          <h2 data-testid="no-contacts">No Contacts</h2>
+        ) : (
+          <h2 data-testid="all-contacts">{`${displayFavorite ? 'Favorite' : 'All'} Contacts`}</h2>
+        )}
         <div className="card-container">
           {displayFavorite
             ? favorites &&

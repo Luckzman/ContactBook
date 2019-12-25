@@ -21,6 +21,7 @@ const Input: React.FC<Props> = ({ name, error, errorMsg, value, label, onChange,
         {label}
       </label>
       <input
+        test-dataid="input"
         id={name}
         type={type}
         name={name}

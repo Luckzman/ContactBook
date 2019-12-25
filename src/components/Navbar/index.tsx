@@ -13,16 +13,16 @@ const Navbar: React.FC<Props> = ({ displayFavorite, handleToggleModal, handleAll
   return (
     <div className="navbar">
       <div className="container">
-        <h3 className="brand" onClick={handleAllContact}>
+        <h3 data-testid="brand" className="brand" onClick={handleAllContact}>
           ContactBook
         </h3>
         <div className="links">
           {displayFavorite ? (
-            <p className="favorite-link extra" onClick={handleAllContact}>
+            <p data-testid="all-contact-text" className="favorite-link extra" onClick={handleAllContact}>
               All Contacts
             </p>
           ) : (
-            <p className="favorite-link" onClick={handleLikedContact}>
+            <p data-testid="fav-contact-link" className="favorite-link" onClick={handleLikedContact}>
               Favorite Contacts
             </p>
           )}
